@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Sidebar = () => {
   const menuItems = [
@@ -18,7 +18,7 @@ const Sidebar = () => {
       title: "Reports",
       path: "/reports",
     },
-       {
+    {
       title: "Settings",
       path: "/settings",
     },
@@ -32,7 +32,9 @@ const Sidebar = () => {
         minHeight: "100vh",
       }}
     >
-      <h3 className="text-center mb-4">Anvaya CRM</h3>
+      <Link to="/" className="text-decoration-none text-white">
+        <h4 className="mb-0 ">Anvaya CRM</h4>
+      </Link>
 
       <div className="nav flex-column">
         {menuItems.map((item) => (
@@ -42,9 +44,7 @@ const Sidebar = () => {
             end={item.path === "/"}
             className={({ isActive }) =>
               `nav-link mb-2 rounded ${
-                isActive
-                  ? "bg-primary text-white"
-                  : "text-white"
+                isActive ? "bg-primary text-white" : "text-white"
               }`
             }
           >

@@ -1,4 +1,6 @@
- import {
+ 
+
+import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
@@ -19,26 +21,16 @@ ChartJS.register(
   Legend
 );
 
-const AgentPerformanceChart = ({
-  data = [],
-}) => {
+const AgentPerformanceChart = ({ data = [] }) => {
   const chartData = {
-    labels: data.map(
-      (agent) => agent.name
-    ),
+    labels: data.map((agent) => agent.name),
 
     datasets: [
       {
         label: "Closed Leads",
-
-        data: data.map(
-          (agent) => agent.totalClosed
-        ),
-
+        data: data.map((agent) => agent.totalClosed),
         backgroundColor: "#0d6efd",
-
         borderRadius: 8,
-
         borderSkipped: false,
       },
     ],
@@ -46,6 +38,7 @@ const AgentPerformanceChart = ({
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
 
     indexAxis: "y",
 
@@ -71,25 +64,16 @@ const AgentPerformanceChart = ({
   };
 
   return (
-    <div className="card shadow-sm">
-
+    <div className="card shadow-sm h-100">
       <div className="card-header">
-
-        <h5 className="mb-0">
-          Closed Leads by Agent
-        </h5>
-
+        <h5 className="mb-0">Closed Leads by Agent</h5>
       </div>
 
       <div className="card-body">
-
-        <Bar
-          data={chartData}
-          options={options}
-        />
-
+        <div className="chart-container">
+          <Bar data={chartData} options={options} />
+        </div>
       </div>
-
     </div>
   );
 };

@@ -13,19 +13,13 @@ ChartJS.register(
   Legend
 );
 
-const PipelineChart = ({
-  data = [],
-}) => {
+const PipelineChart = ({ data = [] }) => {
   const chartData = {
-    labels: data.map(
-      (item) => item.status
-    ),
+    labels: data.map((item) => item.status),
 
     datasets: [
       {
-        data: data.map(
-          (item) => item.count
-        ),
+        data: data.map((item) => item.count),
 
         backgroundColor: [
           "#0d6efd",
@@ -34,29 +28,34 @@ const PipelineChart = ({
           "#dc3545",
           "#6f42c1",
         ],
+
+        borderWidth: 2,
       },
     ],
   };
 
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: {
+        position: "bottom",
+      },
+    },
+  };
+
   return (
-    <div className="card shadow-sm">
-
+    <div className="card shadow-sm h-100">
       <div className="card-header">
-
-        <h5 className="mb-0">
-          Pipeline by Status
-        </h5>
-
+        <h5 className="mb-0">Pipeline by Status</h5>
       </div>
 
       <div className="card-body">
-
-        <Doughnut
-          data={chartData}
-        />
-
+        <div className="chart-container">
+          <Doughnut data={chartData} options={options} />
+        </div>
       </div>
-
     </div>
   );
 };

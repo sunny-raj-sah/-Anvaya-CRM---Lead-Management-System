@@ -1,5 +1,5 @@
  import { useEffect } from "react";
-
+import   "../../App.css"
 import useReport from "../../hooks/useReport";
 
 import PageHeader from "../../components/common/PageHeader";
@@ -42,21 +42,25 @@ const Reports = () => {
         subtitle="CRM Analytics"
       />
 
-      <div className="row">
+      
+      <div className="row g-3">
 
-        <div className="col-lg-6 mb-4">
+       
+        <div className="col-lg-4 d-flex">
           <PipelineChart
             data={state.pipeline}
           />
         </div>
 
-        <div className="col-lg-6 mb-4">
+ 
+                <div className="col-lg-4 d-flex">
           <ClosedLastWeekChart
             data={state.lastWeek}
           />
         </div>
 
-        <div className="col-lg-12">
+ 
+                <div className="col-lg-4 d-flex">
           <AgentPerformanceChart
             data={state.closedByAgent}
           />
