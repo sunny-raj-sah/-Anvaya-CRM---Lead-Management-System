@@ -1,4 +1,4 @@
-import {
+ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
@@ -23,7 +23,9 @@ const AgentPerformanceChart = ({
   data = [],
 }) => {
   const chartData = {
-    labels: data.map((agent) => agent.name),
+    labels: data.map(
+      (agent) => agent.name
+    ),
 
     datasets: [
       {
@@ -32,8 +34,40 @@ const AgentPerformanceChart = ({
         data: data.map(
           (agent) => agent.totalClosed
         ),
+
+        backgroundColor: "#0d6efd",
+
+        borderRadius: 8,
+
+        borderSkipped: false,
       },
     ],
+  };
+
+  const options = {
+    responsive: true,
+
+    indexAxis: "y",
+
+    plugins: {
+      legend: {
+        display: false,
+      },
+
+      title: {
+        display: false,
+      },
+    },
+
+    scales: {
+      x: {
+        beginAtZero: true,
+
+        ticks: {
+          stepSize: 1,
+        },
+      },
+    },
   };
 
   return (
@@ -49,7 +83,10 @@ const AgentPerformanceChart = ({
 
       <div className="card-body">
 
-        <Bar data={chartData} />
+        <Bar
+          data={chartData}
+          options={options}
+        />
 
       </div>
 

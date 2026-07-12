@@ -9,3 +9,13 @@ export const createNewAgent = async (
 ) => {
   return await Agent.create(agentData);
 };
+
+/*
+----------------------------------------
+DELETE AGENT
+----------------------------------------
+*/
+
+export const deleteAgent = async (id) => {
+  return await Agent.findByIdAndDelete(id);
+};

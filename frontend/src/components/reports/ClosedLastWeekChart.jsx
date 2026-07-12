@@ -1,20 +1,20 @@
-import {
+ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
-  Title,
+  PointElement,
+  LineElement,
   Tooltip,
   Legend,
 } from "chart.js";
 
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
-  Title,
+  PointElement,
+  LineElement,
   Tooltip,
   Legend
 );
@@ -22,14 +22,28 @@ ChartJS.register(
 const ClosedLastWeekChart = ({
   data = [],
 }) => {
+
   const chartData = {
-    labels: data.map((lead) => lead.name),
+
+    labels: data.map(
+      (lead) =>
+        new Date(
+          lead.closedAt
+        ).toLocaleDateString()
+    ),
 
     datasets: [
       {
         label: "Closed Leads",
 
         data: data.map(() => 1),
+
+        borderColor: "#198754",
+
+        backgroundColor:
+          "#198754",
+
+        tension: 0.4,
       },
     ],
   };
@@ -47,7 +61,7 @@ const ClosedLastWeekChart = ({
 
       <div className="card-body">
 
-        <Bar data={chartData} />
+        <Line data={chartData} />
 
       </div>
 

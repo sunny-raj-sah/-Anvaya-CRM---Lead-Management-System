@@ -1,4 +1,5 @@
 import Lead from "../models/Lead.js";
+import SalesAgent from "../models/Agent.js";
 
 /*
 ----------------------------------------
@@ -27,6 +28,82 @@ export const getAllLeads = async (
       filters.salesAgent;
   }
 
+
+  // for searching on the lead page use it in the leadfilter.js on frontend
+//  if (filters.search) {
+//   query.$or = [
+//     {
+//       name: {
+//         $regex: filters.search,
+//         $options: "i",
+//       },
+//     },
+//     {
+//       source: {
+//         $regex: filters.search,
+//         $options: "i",
+//       },
+//     },
+//     // {
+//     //   status: {
+//     //     $regex: filters.search,
+//     //     $options: "i",
+//     //   },
+//     // },
+//     // {
+//     //   priority: {
+//     //     $regex: filters.search,
+//     //     $options: "i",
+//     //   },
+//     // },
+//   ];
+// }
+
+
+if (filters.search) {
+  const matchingAgents = await SalesAgent.find({
+    name: {
+      $regex: filters.search,
+      $options: "i",
+    },
+  }).select("_id");
+
+  const agentIds = matchingAgents.map(
+    (agent) => agent._id
+  );
+
+  query.$or = [
+    {
+      name: {
+        $regex: filters.search,
+        $options: "i",
+      },
+    },
+    {
+      source: {
+        $regex: filters.search,
+        $options: "i",
+      },
+    },
+    {
+      status: {
+        $regex: filters.search,
+        $options: "i",
+      },
+    },
+    {
+      priority: {
+        $regex: filters.search,
+        $options: "i",
+      },
+    },
+    {
+      salesAgent: {
+        $in: agentIds,
+      },
+    },
+  ];
+}
   const leads = await Lead.find(query)
     .populate("salesAgent")
     .sort({

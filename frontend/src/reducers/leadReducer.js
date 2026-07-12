@@ -109,6 +109,14 @@ case LEAD_ACTIONS.ADD_AGENT:
     ],
   };
 
+  case LEAD_ACTIONS.DELETE_AGENT:
+  return {
+    ...state,
+    salesAgents: state.salesAgents.filter(
+      (agent) => agent._id !== action.payload
+    ),
+  };
+
     default:
       return state;
   }

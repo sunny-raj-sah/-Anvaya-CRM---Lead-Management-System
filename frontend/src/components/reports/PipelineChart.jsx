@@ -1,33 +1,39 @@
-import {
+ import {
   Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
+  ArcElement,
   Tooltip,
   Legend,
 } from "chart.js";
 
-import { Bar } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
+  ArcElement,
   Tooltip,
   Legend
 );
 
-const PipelineChart = ({ data = [] }) => {
+const PipelineChart = ({
+  data = [],
+}) => {
   const chartData = {
-    labels: data.map((item) => item.status),
+    labels: data.map(
+      (item) => item.status
+    ),
 
     datasets: [
       {
-        label: "Pipeline Leads",
+        data: data.map(
+          (item) => item.count
+        ),
 
-        data: data.map((item) => item.count),
+        backgroundColor: [
+          "#0d6efd",
+          "#198754",
+          "#ffc107",
+          "#dc3545",
+          "#6f42c1",
+        ],
       },
     ],
   };
@@ -45,7 +51,9 @@ const PipelineChart = ({ data = [] }) => {
 
       <div className="card-body">
 
-        <Bar data={chartData} />
+        <Doughnut
+          data={chartData}
+        />
 
       </div>
 

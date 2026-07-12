@@ -41,6 +41,8 @@ const LeadList = () => {
 
       priority:
         searchParams.get("priority") || "",
+
+        search: searchParams.get("search") || "",
     };
 
     setFilters(filters);

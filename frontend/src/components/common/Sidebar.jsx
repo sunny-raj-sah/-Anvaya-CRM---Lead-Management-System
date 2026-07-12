@@ -18,6 +18,10 @@ const Sidebar = () => {
       title: "Reports",
       path: "/reports",
     },
+       {
+      title: "Settings",
+      path: "/settings",
+    },
   ];
 
   return (

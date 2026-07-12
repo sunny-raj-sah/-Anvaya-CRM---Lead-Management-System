@@ -8,3 +8,7 @@ export const getAgents = () => {
 export const createAgent = (agentData) => {
   return api.post(API.AGENTS, agentData);
 };
+
+export const deleteAgent = (id) => {
+  return api.delete(`${API.AGENTS}/${id}`);
+};

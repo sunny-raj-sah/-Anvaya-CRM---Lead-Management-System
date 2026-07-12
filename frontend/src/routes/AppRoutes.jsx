@@ -15,6 +15,11 @@ import AgentList from "../pages/Agents/AgentList";
 import CreateAgent from "../pages/Agents/CreateAgent";
 
 import LeadStatusView from "../pages/LeadViews/LeadStatusView";
+
+import Settings from "../pages/Settings/Settings";
+
+import SalesAgentView from "../pages/LeadViews/SalesAgentView";
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -34,6 +39,15 @@ const AppRoutes = () => {
         <Route path="/leads/edit/:id" element={<EditLead />} />
 
         <Route path="/leads/status" element={<LeadStatusView />} />
+ 
+
+  <Route path="/agent/status" element={< SalesAgentView  />} />
+
+
+        <Route
+  path="/settings"
+  element={<Settings />}
+/>
       </Route>
     </Routes>
   );

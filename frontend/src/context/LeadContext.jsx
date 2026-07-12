@@ -22,6 +22,7 @@ import {
 import {
   getAgents,
   createAgent,
+  deleteAgent,
 } from "../services/agentService";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -293,6 +294,35 @@ const addAgent = async (agentData) => {
     });
   };
 
+  // ------------------------------------------------
+  const removeAgent = async (id) => {
+  dispatch({
+    type: LEAD_ACTIONS.SET_LOADING,
+    payload: true,
+  });
+
+  try {
+    await deleteAgent(id);
+
+    dispatch({
+      type: LEAD_ACTIONS.DELETE_AGENT,
+      payload: id,
+    });
+  } catch (error) {
+    dispatch({
+      type: LEAD_ACTIONS.SET_ERROR,
+      payload:
+        error.response?.data?.message ||
+        "Unable to delete agent.",
+    });
+  } finally {
+    dispatch({
+      type: LEAD_ACTIONS.SET_LOADING,
+      payload: false,
+    });
+  }
+};
+
   return (
     <LeadContext.Provider
       value={{
@@ -315,6 +345,8 @@ const addAgent = async (agentData) => {
         fetchAgents,
 
 addAgent,
+
+removeAgent ,
       }}
     >
       {children}
