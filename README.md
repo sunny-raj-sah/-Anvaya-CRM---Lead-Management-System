@@ -2,6 +2,7 @@
 
 A modern **CRM (Customer Relationship Management)** application built with the **MERN Stack** to help sales teams manage leads, sales agents, comments, and business reports efficiently.
 
+ Live app: https://anvaya-crm-lead-management-system.vercel.app/
 ---
 
 # 📌 Project Overview
