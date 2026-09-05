@@ -9,7 +9,7 @@ import {
   addComment,
   deleteComment,
 } from "../services/commentService";
-import { CURRENT_USER } from "../constants/currentUser";
+// import { CURRENT_USER } from "../constants/currentUser";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -42,7 +42,7 @@ const CommentProvider = ({ children }) => {
     try {
       const { data } = await addComment(leadId, {
         commentText,
-        author: CURRENT_USER.id ,
+        // author: CURRENT_USER.id ,
       });
 
       dispatch({

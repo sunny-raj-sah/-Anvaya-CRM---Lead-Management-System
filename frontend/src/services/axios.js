@@ -1,4 +1,20 @@
+// import axios from "axios";
+// import { API } from "../constants/api";
+
+// const api = axios.create({
+//   baseURL: API.BASE_URL,
+
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// });
+
+// export default api;
+
+// ------------------------------------------------------------
+
 import axios from "axios";
+
 import { API } from "../constants/api";
 
 const api = axios.create({
@@ -8,5 +24,28 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+/*
+----------------------------------------
+Attach JWT to every request
+----------------------------------------
+*/
+
+api.interceptors.request.use(
+  (config) => {
+    const token =
+      localStorage.getItem("token");
+
+    if (token) {
+      config.headers.Authorization =
+        `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default api;

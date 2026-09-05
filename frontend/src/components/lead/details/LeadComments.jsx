@@ -57,7 +57,7 @@
               <div className="d-flex justify-content-between align-items-center mb-2">
 
                 <h6 className="mb-0">
-                  {comment.author?.name || "Unknown"}
+                  {comment.author?.name || comment.authorUser?.name ||"Unknown"}
                 </h6>
 
                 <small className="text-muted">

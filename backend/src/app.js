@@ -1,6 +1,12 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+
+
+import authRoutes from "./routes/authRoutes.js";
+
+import authMiddleware from "./middleware/authMiddleware.js";
+
 import agentRoutes from "./routes/agentRoutes.js";
 import leadRoutes from "./routes/leadRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
@@ -24,29 +30,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 
+// Authentication Routes
+app.use("/api/auth", authRoutes);
 
-app.use(
-  "/api/agents",
-  agentRoutes
-);
+ 
+// CRM Routes
 
-// Register it:
-
-app.use("/api/leads", leadRoutes);
-
-
-app.use("/api/agents", agentRoutes);
-app.use("/api/leads", leadRoutes);
+app.use("/api/agents",  authMiddleware, agentRoutes);
+app.use("/api/leads",   authMiddleware,leadRoutes);
 
 
 app.use(
-  "/api/leads",
+  "/api/leads",  authMiddleware,
   commentRoutes
 );
 
 // Register it:
 app.use(
-  "/api/report",
+  "/api/report",  authMiddleware,
   reportRoutes
 );
 

@@ -1,10 +1,14 @@
+import AuthProvider from "./AuthContext";
+
+
 import LeadProvider from "./LeadContext";
 import CommentProvider from "./CommentContext";
 import AgentProvider from "./AgentContext";
 import ReportProvider from "./ReportContext";
 
 const AppProvider = ({ children }) => {
-  return <LeadProvider>
+  return(<AuthProvider>
+  <LeadProvider>
     
      <CommentProvider>
      <AgentProvider>
@@ -14,7 +18,8 @@ const AppProvider = ({ children }) => {
         </AgentProvider>
 
      </CommentProvider>
-     </LeadProvider>;
+     </LeadProvider>
+     </AuthProvider>);
 };
 
 export default AppProvider;

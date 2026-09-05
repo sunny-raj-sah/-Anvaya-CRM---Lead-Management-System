@@ -1,5 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
+
+
 import DashboardLayout from "../layouts/DashboardLayout";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
@@ -20,10 +24,33 @@ import Settings from "../pages/Settings/Settings";
 
 import SalesAgentView from "../pages/LeadViews/SalesAgentView";
 
+
+
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route element={<DashboardLayout />}>
+      {/* <Route element={<DashboardLayout />}> */}
+           {/* PUBLIC AUTH ROUTES */}
+  
+       <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      <Route
+        path="/register"
+        element={<Register />}
+      />
+
+
+               {/* PROTECTED CRM ROUTES */}
+              
+
+                <Route element={<ProtectedRoute />}>
+               <Route element={<DashboardLayout />}>
+
         <Route path="/" element={<Dashboard />} />
 
         <Route path="/leads" element={<LeadList />} />
@@ -48,6 +75,8 @@ const AppRoutes = () => {
   path="/settings"
   element={<Settings />}
 />
+
+</Route>
       </Route>
     </Routes>
   );
