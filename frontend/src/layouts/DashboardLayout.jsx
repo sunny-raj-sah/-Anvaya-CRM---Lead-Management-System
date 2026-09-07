@@ -8,7 +8,7 @@ const DashboardLayout = () => {
 
       <Sidebar />
 
-      <div className="flex-grow-1 bg-light min-vh-100">
+      <div className="flex-grow-1 min-width-0  bg-light min-vh-100">
 
         <Navbar />
 

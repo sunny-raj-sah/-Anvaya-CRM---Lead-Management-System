@@ -35,40 +35,39 @@ const Reports = () => {
   }
 
   return (
-    <div className="container py-4">
+    <div className="container-fluid py-4">
 
-      <PageHeader
-        title="Reports Dashboard"
-        subtitle="CRM Analytics"
+  <PageHeader
+    title="Reports Dashboard"
+    subtitle="CRM Analytics"
+  />
+
+  <div className="row g-3 g-md-4">
+
+    {/* Pipeline */}
+    <div className="col-12 col-md-6 col-xl-4 d-flex">
+      <PipelineChart
+        data={state.pipeline}
       />
-
-      
-      <div className="row g-3">
-
-       
-        <div className="col-lg-4 d-flex">
-          <PipelineChart
-            data={state.pipeline}
-          />
-        </div>
-
- 
-                <div className="col-lg-4 d-flex">
-          <ClosedLastWeekChart
-            data={state.lastWeek}
-          />
-        </div>
-
- 
-                <div className="col-lg-4 d-flex">
-          <AgentPerformanceChart
-            data={state.closedByAgent}
-          />
-        </div>
-
-      </div>
-
     </div>
+
+    {/* Closed Last Week */}
+    <div className="col-12 col-md-6 col-xl-4 d-flex">
+      <ClosedLastWeekChart
+        data={state.lastWeek}
+      />
+    </div>
+
+    {/* Agent Performance */}
+    <div className="col-12 col-md-6 col-xl-4 d-flex">
+      <AgentPerformanceChart
+        data={state.closedByAgent}
+      />
+    </div>
+
+  </div>
+
+</div>
   );
 };
 
